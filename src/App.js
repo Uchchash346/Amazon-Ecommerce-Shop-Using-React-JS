@@ -9,7 +9,7 @@ import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
 
   useEffect(() => {
     //will omly run once when the app component loads....
@@ -21,7 +21,7 @@ function App() {
           type: 'SET_USER',
           user: authUser
         })
-      }else{
+      } else {
         // the user is not logged in
         dispatch({
           type: 'SET_USER',
