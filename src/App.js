@@ -7,7 +7,7 @@ import Login from './Login';
 import { useEffect } from 'react';
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
-
+ 
 function App() {
   const [{ }, dispatch] = useStateValue();
 
