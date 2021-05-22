@@ -13,13 +13,13 @@ import { auth } from "./firebase";
 auth.onAuthStateChanged((user) => {
   ReactDOM.render(
     <React.StrictMode>
-      <StateProvider initialState={initialState} reducer={reducer}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </StateProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
+     <StateProvider initialState={initialState} reducer={reducer}>
+     <Provider store={store}>
+       <App />
+   </Provider>
+     </StateProvider>
+   </React.StrictMode>,
+   document.getElementById('root')
   );
 })
 // ReactDOM.render(

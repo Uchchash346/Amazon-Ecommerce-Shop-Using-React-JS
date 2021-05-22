@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./style.css";
+import "./Login.css";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/actions/actions";
