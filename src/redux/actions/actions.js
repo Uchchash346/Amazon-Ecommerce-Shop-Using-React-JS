@@ -1,12 +1,12 @@
-import {
-    SET_USER,
-} from "./types";
+// import {
+//     SET_USER,
+// } from "./types";
 
-const setUser = (currentUser) => ({
-    type: SET_USER,
-    payload: {
-        currentUser,
-    },
-});
+// const setUser = (currentUser) => ({
+//     type: SET_USER,
+//     payload: {
+//         currentUser,
+//     },
+// });
 
-export { setUser };
+// export { setUser };

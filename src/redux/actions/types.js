@@ -1,5 +1,5 @@
-const SET_USER = "SET_USER";
+// const SET_USER = "SET_USER";
 
-export {
-    SET_USER,
-}; 
+// export {
+//     SET_USER,
+// }; 
