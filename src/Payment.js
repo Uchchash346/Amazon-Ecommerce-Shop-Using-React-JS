@@ -17,8 +17,11 @@ function Payment() {
         // do all fancy stripe stuff 
     }
 
-    const handleChange = e => {
-
+    const handleChange = event => {
+        // Listen for changes in the card elements
+        // and display any errors as the customers types their card details 
+        setDisable(event.empty);
+        setError(event.error ? event.error.message : "");
     }
     return (
         <div className="payment">
@@ -65,6 +68,21 @@ function Payment() {
                         {/* Stripe Magic will go */}
                         <form onClick={handleSubmit}>
                             <CardElement onCHange={handleChange} />
+
+                            <div className="payment_priceContainer">
+                                <CurrencyFormat
+                                    renderText={(value) => {
+                                        <>
+                                            <h3>Order Total: {value}</h3>
+                                        </>
+                                    }}
+                                    decimalScale={2}
+                                    value={getBasketTotal(basket)} //part of the homework
+                                    displayType={"text"}
+                                    thousandsSeparator={true}
+                                    prefix={"$"}
+                                />
+                            </div>
                         </form>
 
                     </div>
