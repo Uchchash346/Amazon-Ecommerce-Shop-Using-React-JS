@@ -1,5 +1,5 @@
 import { CardElement } from '@stripe/react-stripe-js';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import CheckoutProduct from './CheckoutProduct';
 import './Payment.css'
@@ -8,6 +8,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, useElements, useStripe } from "@stripe/react-stripe-js"
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from './reducer';
+import axios from 'axios';
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -18,9 +19,21 @@ function Payment() {
     const [processing, setProcessing] = useState("");
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
+    const [clientSecret, setClientSecret] = useState(true);
 
-    const handleSubmit = e => {
+    useEffect(() => {
+        // generate that special secret which allows us to charge a customer
+
+        const getClientSecret = async () => {
+            const response = await axios
+        }
+    }, [basket])
+
+    const handleSubmit = async (event) => {
         // do all fancy stripe stuff 
+        event.preventDefault();
+        setProcessing(true);
+        // const payload = await stripe
     }
 
     const handleChange = event => {
@@ -90,6 +103,8 @@ function Payment() {
                                     <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                                 </button>
                             </div>
+                            {/* Error */}
+                            {error && <div>{error}</div>}
                         </form>
 
                     </div>
