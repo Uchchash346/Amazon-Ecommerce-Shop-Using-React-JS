@@ -6,6 +6,8 @@ import './Payment.css'
 import { useStateValue } from './StateProvider';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, useElements, useStripe } from "@stripe/react-stripe-js"
+import CurrencyFormat from "react-currency-format";
+import { getBasketTotal } from './reducer';
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
     const stripe = useStripe();
@@ -71,11 +73,10 @@ function Payment() {
 
                             <div className="payment_priceContainer">
                                 <CurrencyFormat
-                                    renderText={(value) => {
-                                        <>
-                                            <h3>Order Total: {value}</h3>
-                                        </>
-                                    }}
+                                    renderText={(value) => (
+
+                                        <h3>Order Total: {value}</h3>
+                                    )}
                                     decimalScale={2}
                                     value={getBasketTotal(basket)} //part of the homework
                                     displayType={"text"}
