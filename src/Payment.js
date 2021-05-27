@@ -8,12 +8,16 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, useElements, useStripe } from "@stripe/react-stripe-js"
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from './reducer';
+
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
     const stripe = useStripe();
     const elements = useElements();
+
+    const [succeeded, setSucceeded] = useState(false);
+    const [processing, setProcessing] = useState("");
     const [error, setError] = useState(null);
-    const [disable, setDisable] = useState(true);
+    const [disabled, setDisabled] = useState(true);
 
     const handleSubmit = e => {
         // do all fancy stripe stuff 
@@ -22,7 +26,7 @@ function Payment() {
     const handleChange = event => {
         // Listen for changes in the card elements
         // and display any errors as the customers types their card details 
-        setDisable(event.empty);
+        setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
     }
     return (
@@ -74,7 +78,6 @@ function Payment() {
                             <div className="payment_priceContainer">
                                 <CurrencyFormat
                                     renderText={(value) => (
-
                                         <h3>Order Total: {value}</h3>
                                     )}
                                     decimalScale={2}
@@ -83,6 +86,9 @@ function Payment() {
                                     thousandsSeparator={true}
                                     prefix={"$"}
                                 />
+                                <button disabled={processing || disabled || succeeded}>
+                                    <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                                </button>
                             </div>
                         </form>
 
