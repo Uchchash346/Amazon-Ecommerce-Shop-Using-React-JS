@@ -25,7 +25,11 @@ function Payment() {
         // generate that special secret which allows us to charge a customer
 
         const getClientSecret = async () => {
-            const response = await axios
+            const response = await axios({
+                method: 'post',
+                // Stripe expects the total in a currencies subunits
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+            });
         }
     }, [basket])
 
